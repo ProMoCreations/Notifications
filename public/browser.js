@@ -1,6 +1,5 @@
 var myId = 1356;
 
-// показать сообщение в div#subscribe
 showMessage = function(data) {
 	var chatWindow = $('#chatWindow');
 	chatWindow.append($('<div>').text(data.text));
@@ -23,29 +22,35 @@ showNotification = function(sender, text) {
 	}
 };
 
-$(document).ready(function(){
-	$('#sendButton').hide();
+var ws = null;
 
+wsInit = function() {
 	var host = location.origin.replace(/^http/, 'ws')
-	var socket = new WebSocket(host);
-	socket.onopen = function() { 
+	ws = new WebSocket(host);
+	ws.onopen = function() { 
 		$('#sendButton').show();
 	};
 	
-	socket.onclose = function() { 
+	ws.onclose = function() { 
 		setTimeout(function(){
 			location.reload();
 		}, 3000);
 	};
 
-	socket.onmessage = function(event) {
+	ws.onmessage = function(event) {
 		var incomingMessage = JSON.parse(event.data);
 		showMessage(incomingMessage);
 	};
+};
+
+$(document).ready(function(){
+	$('#sendButton').hide();
+
+	wsInit();
 	
 	$('#sendButton').click(function(){
 		window.webkitNotifications.requestPermission();
 		var outgoingMessage = document.getElementById('message').value;
-		socket.send(outgoingMessage);
+		ws.send(outgoingMessage);
 	});
 });
