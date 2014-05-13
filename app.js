@@ -3,6 +3,7 @@ var ws = require('ws');
 var express = require('express');
 
 //global variables
+var port = Number(process.env.PORT || 5000);
 var clients = {};
 var clientId = 0;
 
