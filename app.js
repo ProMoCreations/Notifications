@@ -1,22 +1,22 @@
-//requires
-var ws = require('ws');
-var http = require('http');
-var express = require('express');
+var WebSocketServer = require('ws').Server
+  , http = require('http')
+  , express = require('express')
+  , app = express()
+  , port = process.env.PORT || 5000;
+
+app.use(express.static(__dirname + '/public'));
 
 //global variables
-var port = Number(process.env.PORT || 5000);
 var clients = {};
 var clientId = 0;
 
-//Static server
-var app = express();
+//http server
 var server = http.createServer(app);
-app.use(express.static(__dirname + '/public'));
 server.listen(port);
-console.log('Static server has started');
+console.log('http server listening on %d', port);
 
 //WebSocket server
-var webSocketServer = new ws.Server({server: server});
+var webSocketServer = new WebSocketServer({server: server});
 webSocketServer.on('connection', function(ws) {
 	var userId = clientId;
 	clientId++;
