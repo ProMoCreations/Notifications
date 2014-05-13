@@ -26,7 +26,8 @@ showNotification = function(sender, text) {
 $(document).ready(function(){
 	$('#sendButton').hide();
 
-	var socket = new WebSocket("ws://192.168.0.111:5301");
+	var host = location.origin.replace(/^http/, 'ws')
+	var socket = new WebSocket(host);
 	socket.onopen = function() { 
 		$('#sendButton').show();
 	};
