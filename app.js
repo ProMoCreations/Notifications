@@ -9,11 +9,11 @@ var clientId = 0;
 //Static server
 var app = new express();
 app.use(express.static(__dirname + '/public'));
-app.listen(5300);
+app.listen(port);
 console.log('Static server has started');
 
 //WebSocket server
-var webSocketServer = new ws.Server({port: 5301});
+var webSocketServer = new ws.Server({server: app});
 webSocketServer.on('connection', function(ws) {
 	var userId = clientId;
 	clientId++;
