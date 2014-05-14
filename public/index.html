@@ -1,17 +1,56 @@
-<!DOCTYPE html>
-<html>
+﻿<html>
 <head>
-	<title>Notifications WebSocket</title>
-	<script src="jquery-2.1.1.min.js"></script>
-	<script src="browser.js"></script>
+	<title>WebSocket Notifications</title>
+	<link href="css/bootstrap.min.css" type="text/css" media="all" rel="stylesheet">
+	<link href="css/style.css" type="text/css" media="all" rel="stylesheet">
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/client.js"></script>
+	<script src="js/index.js"></script>
 </head>
 <body>
-	<div>
+	<div id="chat-layout">
+		<div class="header">
+			<div class="page-header">
+				<button type="button" class="btn btn-primary btn-xs" style="float:right;" data-toggle="modal" data-target="#myModal" id="btn-login-popup">Авторизация</button>
+				<h1>WebSocket <small> Notifications</small></h1>
+			</div>
+		</div>
+		<div class="alert alert-warning" id="warning-chat">Предупреждение</div>
+		<div class="alert alert-danger" id="error-chat">Ошибка</div>
+		<div id="messages" class="messages">
+			
+		</div>
+		<div class="send-box">
+			<textarea class="form-control" rows="3" id="message" disabled></textarea>
+			<p class="text-center">Нажмите клавишу Enter для отправки сообщения</p>
+		</div>
+	</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Авторизация</h4>
+      </div>
+      <div class="modal-body">
+	<div class="alert alert-danger" id="error-popup">Ошибка</div>
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="Логин" id="login-nick">
+		</div>
+		<div class="form-group">
+			<button type="button" class="btn btn-primary" id="btn-login">Войти</button>
+		</div>
+      </div>
+    </div>
+  </div>
+</div>
+	<!--<form name="publish">
 	  <input type="text" name="message" id='message'/>
-	  <a href="#" id="sendButton">Отправить</a>
-	</div>
-	<div style="overflow:hidden; width: 500px; height: 200px; background-color: #f0f0f0;">
-		<div id="chatWindow"></div>
-	</div>
+	  <input type="button" id="btn" value="Отправить" onclick="SendWS()"/>
+	</form>
+	<div id="subscribe"></div>-->
 </body>
 </html>

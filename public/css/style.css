@@ -1,0 +1,33 @@
+body{
+	background-color:#000;
+	background-image: url("../img/background.jpg");
+	background-repeat: repeat-x;
+    -moz-background-size: 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100%; /* Opera 9.6+ */
+    background-size: 100%; /* Современные браузеры */
+}
+#chat-layout{
+	background-color:#fff;
+	max-width:600px;
+	margin:0px auto;
+	border:1px solid #eee;
+	border-radius: 5px;
+	padding: 10px;
+	margin-top:10px;
+}
+.messages{
+	height: 300px;
+	background-color: #eee;
+	color:#444;
+	margin-bottom:10px;
+	overflow-y: scroll;
+	padding: 0px 5px;
+}
+.messages p{
+	padding: 0px 0px 3px 0px;
+	margin: 0px;
+}
+#warning-chat, #error-chat, #error-popup{
+	display:none;
+}
